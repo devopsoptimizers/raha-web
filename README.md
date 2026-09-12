@@ -33,3 +33,5 @@ Every `/api/` request is written to Gunicorn's access log and to the `AuditLog` 
 - Ship structured application/access logs to centralized storage and alert on health, 5xx rate, and database saturation.
 
 Architecture, relationships, API catalogue, and rollout phases are in [docs/architecture.md](docs/architecture.md), [docs/erd.md](docs/erd.md), and [docs/api.md](docs/api.md).
+
+# s
