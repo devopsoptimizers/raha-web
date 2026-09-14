@@ -1,0 +1,1 @@
+"use client";import {useParams} from "next/navigation";import {AdminResource} from "@/components/admin-resource";export default function Page(){const{resource}=useParams<{resource:string}>();return <AdminResource name={resource}/>}

@@ -1,0 +1,8 @@
+"use client";
+import Link from "next/link";
+import {useState} from "react";
+import {Icon} from "./icons";
+import {AnimatedHeading} from "./animated-heading";
+type About={title:string;body:string;image?:string;payload?:Record<string,string|number>};
+function embed(url:string){try{const u=new URL(url);if(u.hostname.includes("youtu.be"))return `https://www.youtube.com/embed/${u.pathname.slice(1)}?autoplay=1`;const id=u.searchParams.get("v");return id?`https://www.youtube.com/embed/${id}?autoplay=1`:url}catch{return url}}
+export function AboutSection({about,pageMode=false}:{about:About;pageMode?:boolean}){const[open,setOpen]=useState(false),video=String(about.payload?.video_url||"https://www.youtube.com/watch?v=Scxs7L0vhZ4");return <section id="about" className={`home-about${pageMode?" about-page-intro":""}`}><div className="ref-container home-about-grid"><div className="home-about-copy"><p className="ref-kicker">{pageMode?"Who We Are":"About us"}</p><AnimatedHeading>{about.title}</AnimatedHeading><p>{about.body}</p><Link href={pageMode?"/contact-us":"/about-us"} className="home-about-link">{pageMode?"Read More":"Learn More"} <Icon name="arrow"/></Link></div><button className="home-about-video" onClick={()=>setOpen(true)} aria-label="Play our story video">{about.image&&<img src={about.image} alt={about.title}/>}<span className="home-about-shade"/><span className="home-about-play"><i>▶</i><b>Play Video</b></span></button></div>{open&&<div className="video-modal" onClick={()=>setOpen(false)}><button aria-label="Close video">×</button><div onClick={e=>e.stopPropagation()}><iframe src={embed(video)} title="About our company" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen/></div></div>}</section>}

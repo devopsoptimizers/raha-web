@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py"]
+addopts = "--strict-markers --cov=. --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = ["*/migrations/*", "manage.py", "config/asgi.py", "config/wsgi.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

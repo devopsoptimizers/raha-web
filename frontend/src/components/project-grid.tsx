@@ -1,0 +1,3 @@
+"use client";
+import {useState} from "react";import type {Project} from "@/lib/api";import {PropertyCard} from "./property-card";
+export function ProjectGrid({projects}:{projects:Project[]}){const[visible,setVisible]=useState(6),shown=projects.slice(0,visible),hasMore=visible<projects.length;return <>{<div className="projects-grid">{shown.map(project=><PropertyCard key={project.id} project={project}/>)}</div>}{hasMore&&<div className="projects-load-more"><p>Showing {shown.length} of {projects.length} projects</p><button type="button" onClick={()=>setVisible(count=>Math.min(count+6,projects.length))}>Load More <span>↓</span></button></div>}</>}

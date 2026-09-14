@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: realestate
+      POSTGRES_USER: realestate
+      POSTGRES_PASSWORD: realestate
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck: {test: [CMD-SHELL, "pg_isready -U realestate"], interval: 10s, timeout: 5s, retries: 5}
+  web:
+    build: .
+    env_file: .env
+    environment:
+      PUBLIC_API_ORIGIN: ${PUBLIC_API_ORIGIN:-http://localhost:8000}
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3 --access-logfile - --error-logfile - --capture-output"
+    ports: ["8000:8000"]
+    volumes: [media_data:/app/media, static_data:/app/staticfiles]
+    depends_on: {db: {condition: service_healthy}}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/home/')"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
+    environment:
+      INTERNAL_API_URL: http://web:8000/api/v1
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
+    ports: ["3000:3000"]
+    depends_on:
+      web: {condition: service_healthy}
+    restart: unless-stopped
+volumes: {postgres_data: {}, media_data: {}, static_data: {}}

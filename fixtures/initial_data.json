@@ -1,0 +1,6 @@
+[
+  {"model":"locations.division","pk":"10000000-0000-0000-0000-000000000001","fields":{"name":"Dhaka","is_active":true,"created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","created_by":null,"updated_by":null}},
+  {"model":"locations.district","pk":"20000000-0000-0000-0000-000000000001","fields":{"division":"10000000-0000-0000-0000-000000000001","name":"Dhaka","is_active":true,"created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","created_by":null,"updated_by":null}},
+  {"model":"locations.area","pk":"30000000-0000-0000-0000-000000000001","fields":{"district":"20000000-0000-0000-0000-000000000001","name":"Gulshan","is_active":true,"created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","created_by":null,"updated_by":null}},
+  {"model":"amenities.amenity","pk":"40000000-0000-0000-0000-000000000001","fields":{"name":"Rooftop Garden","icon":"","description":"Landscaped shared rooftop space.","is_active":true,"created_at":"2026-01-01T00:00:00Z","updated_at":"2026-01-01T00:00:00Z","created_by":null,"updated_by":null}}
+]

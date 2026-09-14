@@ -1,0 +1,3 @@
+import type {Metadata} from "next";import "./globals.css";import {SiteSettingsProvider} from "@/components/site-settings";import {WhatsAppButton} from "@/components/whatsapp-button";
+export const metadata:Metadata={title:{default:"Arcadia Properties",template:"%s | Arcadia"},description:"Thoughtfully developed homes and exceptional property experiences in Bangladesh."};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body><noscript><style>{`.animated-heading-item{opacity:1!important;transform:none!important}`}</style></noscript><SiteSettingsProvider>{children}<WhatsAppButton/></SiteSettingsProvider></body></html>}

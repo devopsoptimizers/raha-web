@@ -1,0 +1,5 @@
+"use client";
+
+export function SubmissionConfirmModal({ title, message, busy = false, onCancel, onConfirm }: { title: string; message: string; busy?: boolean; onCancel: () => void; onConfirm: () => void }) {
+  return <div className="meeting-success-backdrop" role="presentation" onClick={busy ? undefined : onCancel}><div className="meeting-success-dialog" role="alertdialog" aria-modal="true" aria-labelledby="submission-confirm-title" aria-describedby="submission-confirm-message" onClick={(event) => event.stopPropagation()}><button className="meeting-success-close" type="button" onClick={onCancel} disabled={busy} aria-label="Cancel submission">×</button><span className="meeting-success-check">?</span><p>Please confirm</p><h2 id="submission-confirm-title">{title}</h2><div id="submission-confirm-message">{message}</div><div className="submission-confirm-actions"><button type="button" className="submission-confirm-cancel" onClick={onCancel} disabled={busy}>Cancel</button><button type="button" className="meeting-success-action" onClick={onConfirm} disabled={busy}>{busy ? "Submitting…" : "Confirm submission"}</button></div></div></div>;
+}

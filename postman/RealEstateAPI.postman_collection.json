@@ -1,0 +1,20 @@
+{
+  "info": {"name": "Real Estate API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable": [{"key": "base_url", "value": "http://localhost:8000/api/v1"}, {"key": "access_token", "value": ""}],
+  "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{access_token}}", "type": "string"}]},
+  "item": [
+    {"name": "Authentication", "item": [
+      {"name": "Login", "request": {"auth": {"type": "noauth"}, "method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"email\":\"admin@example.com\",\"password\":\"change-me\"}"}, "url": "{{base_url}}/auth/login/"}},
+      {"name": "Current user", "request": {"method": "GET", "url": "{{base_url}}/auth/me/"}}
+    ]},
+    {"name": "Projects", "item": [
+      {"name": "List published projects", "request": {"auth": {"type": "noauth"}, "method": "GET", "url": "{{base_url}}/projects/?status=ONGOING&page=1"}},
+      {"name": "Featured projects", "request": {"auth": {"type": "noauth"}, "method": "GET", "url": "{{base_url}}/projects/featured/"}}
+    ]},
+    {"name": "Public", "item": [
+      {"name": "Homepage", "request": {"auth": {"type": "noauth"}, "method": "GET", "url": "{{base_url}}/home/"}},
+      {"name": "Health", "request": {"auth": {"type": "noauth"}, "method": "GET", "url": "{{base_url}}/health/"}},
+      {"name": "Create inquiry", "request": {"auth": {"type": "noauth"}, "method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"full_name\":\"Example Customer\",\"phone\":\"01712345678\",\"email\":\"customer@example.com\",\"message\":\"Please contact me\"}"}, "url": "{{base_url}}/inquiries/"}}
+    ]}
+  ]
+}
