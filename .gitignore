@@ -15,8 +15,7 @@ __pycache__/
 htmlcov/
 *.sqlite3
 
-# Django generated and uploaded files
-media/
+# Django generated files
 staticfiles/
 
 # Node / Next.js
